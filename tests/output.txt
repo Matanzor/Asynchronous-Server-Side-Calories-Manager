@@ -1,0 +1,40 @@
+http://localhost:3000
+
+testing getting the about
+-------------------------
+url=http://localhost:3000/api/about/
+data.status_code=200
+b'[{"firstname":"dave","lastname":"cohen","id":234234,"email":"daddd@gmail.com"},{"firstname":"tal","lastname":"levy","id":34534544,"email":"tal@gmail.com"}]'
+data.text=[{"firstname":"dave","lastname":"cohen","id":234234,"email":"daddd@gmail.com"},{"firstname":"tal","lastname":"levy","id":34534544,"email":"tal@gmail.com"}]
+[{'firstname': 'dave', 'lastname': 'cohen', 'id': 234234, 'email': 'daddd@gmail.com'}, {'firstname': 'tal', 'lastname': 'levy', 'id': 34534544, 'email': 'tal@gmail.com'}]
+firstname=dave
+lastname=cohen
+id=234234
+dave cohen 234234
+
+
+testing getting the report - 1
+------------------------------
+url=http://localhost:3000/api/report/?user_id=123123&year=2024&month=3
+data.status_code=200
+b'{"breakfast":[],"lunch":[],"dinner":[],"other":[]}'
+data.text={"breakfast":[],"lunch":[],"dinner":[],"other":[]}
+[]
+
+
+testing adding calorie consumption
+----------------------------------
+url=http://localhost:3000/api/addcalories/
+data.status_code=201
+b'{"user_id":123123,"year":2024,"month":4,"day":2,"id":"66696ee2c7498d98045de3a8","description":"milk 9","category":"lunch","amount":8,"_id":"66696ee2c7498d98045de3a9","__v":0}'
+data.text={"user_id":123123,"year":2024,"month":4,"day":2,"id":"66696ee2c7498d98045de3a8","description":"milk 9","category":"lunch","amount":8,"_id":"66696ee2c7498d98045de3a9","__v":0}
+
+
+testing getting the report - 2
+------------------------------
+url=http://localhost:3000/api/report/?user_id=123123&year=2024&month=4
+data.status_code=200
+b'{"breakfast":[],"lunch":[{"_id":"66696ee2c7498d98045de3a9","day":2,"description":"milk 9","amount":8}],"dinner":[],"other":[]}'
+data.text={"breakfast":[],"lunch":[{"_id":"66696ee2c7498d98045de3a9","day":2,"description":"milk 9","amount":8}],"dinner":[],"other":[]}
+[]
+
