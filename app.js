@@ -23,8 +23,8 @@ app.get('/', (req, res) => {
     res.send('Calories Manager RESTful Web Services');
 });
 
-// Use API routes without the /api prefix
-app.use('/', apiRoutes);
+// Use API routes with the /api prefix
+app.use('/api', apiRoutes);
 
 // Start the server
 const port = process.env.PORT || 3000;
