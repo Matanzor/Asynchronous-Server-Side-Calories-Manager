@@ -51,7 +51,8 @@ router.get('/report/', async (req, res) => {
 router.get('/about/', (req, res) => {
     const developers = [
         { firstname: 'matan', lastname: 'itzhaki', id: 315529719, email: 'matanitzhaki3@gmail.com' },
-        { firstname: 'xxx', lastname: 'xxx', id: 123, email: 'xxx@gmail.com' }
+        { firstname: 'ofek', lastname: 'ezra', id: 208494336, email: 'ofek040897@gmail.com' },
+        { firstname: 'ido michael', lastname: 'barnea', id: 316315837, email: 'idorr1234@gmail.com' }
     ];
     res.send(developers);
 });
