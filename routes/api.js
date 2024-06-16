@@ -3,19 +3,32 @@ const router = express.Router();
 const User = require('../models/User');
 const Calorie = require('../models/Calorie');
 
+// Custom Exception
+function ApiException(message, code) {
+    this.message = message;
+    this.code = code;
+}
+
+ApiException.prototype = new Error();
+
 // Add a new calorie consumption item
-router.post('/addcalories/', async (req, res) => {
+router.post('/addcalories', async (req, res) => {
     try {
         const { user_id, year, month, day, description, category, amount } = req.body;
+        if (!user_id || !year || !month || !day || !description || !category || !amount) {
+            throw new ApiException('Missing required fields', 400);
+        }
         const calorie = new Calorie({ user_id, year, month, day, description, category, amount });
         await calorie.save();
         res.status(201).send(calorie);
     } catch (err) {
-        res.status(400).send(err);
+        if (err instanceof ApiException) {
+            res.status(err.code).send({ error: err.message });
+        } else {
+            res.status(400).send(err);
+        }
     }
 });
-
-module.exports = router;
 
 // Get user details
 router.get('/users/:id', async (req, res) => {
@@ -31,9 +44,12 @@ router.get('/users/:id', async (req, res) => {
 });
 
 // Get detailed report
-router.get('/report/', async (req, res) => {
+router.get('/report', async (req, res) => {
     try {
         const { user_id, year, month } = req.query;
+        if (!user_id || !year || !month) {
+            throw new ApiException('Missing required query parameters', 400);
+        }
         const categories = ['breakfast', 'lunch', 'dinner', 'other'];
         const report = {};
 
@@ -43,18 +59,23 @@ router.get('/report/', async (req, res) => {
 
         res.send(report);
     } catch (err) {
-        res.status(500).send(err);
+        if (err instanceof ApiException) {
+            res.status(err.code).send({ error: err.message });
+        } else {
+            res.status(500).send(err);
+        }
     }
 });
 
-// Get developer details
-router.get('/about/', (req, res) => {
+// Get developer information
+router.get('/about', (req, res) => {
+    console.log('About endpoint was hit');  // Add a log to ensure this route is hit
     const developers = [
         { firstname: 'matan', lastname: 'itzhaki', id: 315529719, email: 'matanitzhaki3@gmail.com' },
         { firstname: 'ofek', lastname: 'ezra', id: 208494336, email: 'ofek040897@gmail.com' },
         { firstname: 'ido michael', lastname: 'barnea', id: 316315837, email: 'idorr1234@gmail.com' }
     ];
-    res.send(developers);
+    res.json(developers);
 });
 
 module.exports = router;
