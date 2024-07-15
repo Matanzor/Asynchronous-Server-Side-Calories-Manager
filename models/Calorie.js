@@ -1,3 +1,7 @@
+//matan itzhaki, 315529719
+//ofek ezra, 20849336
+//ido michael barnea, 316315837
+
 const mongoose = require('mongoose');
 
 const calorieSchema = new mongoose.Schema({
@@ -9,6 +13,7 @@ const calorieSchema = new mongoose.Schema({
     description: { type: String, required: true },
     category: { type: String, required: true, enum: ['breakfast', 'lunch', 'dinner', 'other'] },
     amount: { type: Number, required: true }
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('Calorie', calorieSchema);
+
