@@ -3,7 +3,7 @@ import sys
 
 filename = input("filename=")
 
-line = "http://localhost:3000"
+line = "https://asynchronous-server-side-calories-manager.onrender.com/api"
 
 output = open(filename, "w")
 
@@ -19,7 +19,7 @@ try:
     text = ""
 
     # getting details of team manager
-    url = line + "/api/about/"
+    url = line + "/about/"
     data = requests.get(url)
 
     print("url=" + url)
@@ -48,7 +48,7 @@ try:
     text = ""
 
     # getting the report
-    url = line + "/api/report/?user_id=123123&year=2024&month=3"
+    url = line + "/report/?user_id=123123&year=2024&month=3"
     data = requests.get(url)
 
     print("url=" + url)
@@ -73,7 +73,7 @@ try:
     text = ""
 
     # adding calorie consumption
-    url = line + "/api/addcalories/"
+    url = line + "/addcalories/"
     data = requests.post(url, json={'user_id': 123123, 'year': 2024, 'month': 4, 'day': 2, 'description': 'milk 9', 'category': 'lunch', 'amount': 8})
 
     print("url=" + url)
@@ -97,7 +97,7 @@ try:
     text = ""
 
     # getting the report
-    url = line + "/api/report/?user_id=123123&year=2024&month=4"
+    url = line + "/report/?user_id=123123&year=2024&month=4"
     data = requests.get(url)
 
     print("url=" + url)
