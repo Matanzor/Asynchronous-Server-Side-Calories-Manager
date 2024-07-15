@@ -1,8 +1,13 @@
+//matan itzhaki, 315529719
+//ofek ezra, 20849336
+//ido michael barnea, 316315837
+
 const mongoose = require('mongoose');
 const User = require('./models/User');
 
 // MongoDB connection
-const mongoUri = 'mongodb+srv://admin:admin123123@cluster0.xrhcmq8.mongodb.net/caloriesDB?retryWrites=true&w=majority&appName=Cluster0';
+const mongoUri = 
+'mongodb+srv://admin:admin123123@cluster0.xrhcmq8.mongodb.net/caloriesDB?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
